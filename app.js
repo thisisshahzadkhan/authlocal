@@ -36,12 +36,12 @@ app.post('/hello',(req,res)=>{
 
 app.post('/auth',passport.authenticate('local'),function(req,res){
     console.log('i am here');
-    console.log(req.user.username);
-    res.send(req.user.username);
+    console.log(req.user.devicehash);
+    res.send(req.user.devicehash);
 });
 
 app.post('/signup',(req,res)=>{
-    User.register(new User({username:req.body.username}),
+    User.register(new User({username:req.body.username,devicehash:req.body.devicehash}),
     req.body.password,
     function(err,user){
         if(err){
